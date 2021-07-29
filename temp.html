@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather app</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <section class="top-banner">
+      <div class="container">
+        <h1 class="heading">Weather App</h1>
+        <p>When you search for a city I will hide!!!</p>
+        <form>
+          <input type="text" placeholder="City search" autofocus />
+          <button type="submit">SUBMIT</button>
+          <span class="msg"></span>
+        </form>
+      </div>
+    </section>
+    <section class="building">
+      <div class="container">
+        <ul class="cities"></ul>
+      </div>
+    </section>
+
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="index.js"></script>
+  </body>
+</html>
