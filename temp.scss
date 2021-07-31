@@ -53,7 +53,14 @@ body {
   margin: 0 auto;
   padding: 0 15px;
 }
-
+@mixin important-text {
+  font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 15px 20px;
+    margin-left: 15px;
+    border-radius: 5px;
+}
 .top-banner {
   color: $primary-color1;
   .heading {
@@ -79,12 +86,7 @@ body {
     color: currentColor;
   }
   form button {
-    font-size: 1rem;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    padding: 15px 20px;
-    margin-left: 15px;
-    border-radius: 5px;
+    @include important-text;
     background: $secondary-color1;
     transition: background 0.3s ease-in-out;
   }
