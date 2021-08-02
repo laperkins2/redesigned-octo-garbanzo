@@ -4,6 +4,20 @@ const msg = document.querySelector('.top-banner .msg');
 const list = document.querySelector('.building .cities');
 const apiKey = '1dca8b306a1b627e8d7c4dfd8813b78e';
 let index = 0;
+let temp = [];
+
+
+async function calculateAverage(average) {
+  let total = 0;
+  let count = 0;
+
+average.forEach(function(item, _index) {
+  total += item;
+  count++;
+});
+
+return total / count;
+}
 
 $(document).ready(function () {
   $('button').click(function () {
@@ -14,8 +28,9 @@ $(document).ready(function () {
 $(document).ready(function () {
   /*! Fades in page on load */
   $('body').css('display', 'none');
-  $('body').fadeIn(5000);
+  $('body').fadeIn(2000);
 });
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   console.log();
@@ -24,6 +39,7 @@ form.addEventListener('submit', (e) => {
   const listItems = list.querySelectorAll('.building .city');
   const listItemsArray = Array.from(listItems);
 
+  //built-in array filter
   if (listItemsArray.length > 0) {
     const filteredArray = listItemsArray.filter((el) => {
       let content = '';
@@ -57,7 +73,7 @@ form.addEventListener('submit', (e) => {
     `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=imperial`
   )
     .then((response) => response.json())
-    .then((data) => {
+    .then(async (data) => {
       const { main, name, sys, weather } = data;
       const icon = `https://openweathermap.org/img/wn/${weather[0]['icon']}@2x.png`;
 
@@ -79,13 +95,18 @@ form.addEventListener('submit', (e) => {
       $('.building .cities').append(
         `<li id='city${index}' class='city'>${markup}</li>`
       );
-      $(`#city${index}`).hide().fadeIn(5000);
+      $(`#city${index}`).hide().fadeIn(2000);
       index++;
+      temp.push(Math.round(main.temp));
+
+    document.getElementById('avg').innerHTML= (await calculateAverage(temp) + ' is the average temperature!');
     })
-    .catch(() => {
+     .catch(() => {
       msg.textContent = 'City not valid';
     });
   msg.textContent = '';
   form.reset();
   input.focus();
 });
+
+
